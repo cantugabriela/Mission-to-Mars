@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image" href="#" />
+    <title>Mission to Mars</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <!--CSS Link-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+
+<body>
+        <div class="container">
+
+
+        <!-- Jumbotron -->
+
+        <div class="jumbotron">
+            <h1 class="display-4">Mission to Mars</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention
+                to featured content or information.</p>
+            <hr class="my-4">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a>
+        </div>
+
+        <!-- News Section -->
+
+        <div class="container">
+            <h3>Latest Mars News</h3>
+            <h6>{{ mars_info.news_title }}</h6>
+            <p>{{ mars_info.news_paragraph }}</p>
+        </div>
+        <!-- Featured Image Section -->
+<div class="container">
+        <div class="row">
+                <div class="col-8">
+
+
+            <h3>Featured Mars Image</h3>
+            <img src="{{ mars_info.featured_image_url }}" style="max-width:100%; max-height: auto;">
+
+
+        </div>
+
+        <!-- Right Container -->
+  
+        <!-- Weather Card -->
+        <div class="col-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h6 class="card-title">Current Weather on Mars</h6>
+                <p class="card-text">{{ mars_info.weather_tweet }}</p>
+            </div>
+        </div>
+
+        <!-- Mars Facts Table  -->
+
+        <h6>Mars Facts</h6>
+        <div style="max-width: 450px; max-height: 150px; font-size: 15px;">
+        {{ mars_info.mars_facts |safe}}
+         </div>
+</div>
+
+
+
+         </div>
+        <br>
+        <br>
+
+
+
+
+
+        <!-- Mars Hemisphers Section -->
+        <h3>Mars Hemispheres</h3>
+        <hr>
+        <div class="card-deck">
+        <div class="container">
+        <div class="row">
+        <div class="card" style="width: 18rem; margin:30px;">
+            <img class="card-img-top" src="{{ mars_info.hemispheres_image_urls[0]["img_url"] }}" alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text">{{ mars_info.hemispheres_image_urls[0]["title"] }}</p>
+            </div>
+
+        </div>
+
+
+     
+
+        <div class="card" style="width: 18rem; margin:30px;">
+            <img class="card-img-top" src="{{ mars_info.hemispheres_image_urls[1]["img_url"] }}" alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text">{{ mars_info.hemispheres_image_urls[1]["title"] }}</p>
+            </div>
+
+        </div>
+    </div>
+
+        <div class="row">
+        <div class="card" style="width: 18rem; margin:30px;">
+            <img class="card-img-top" src="{{ mars_info.hemispheres_image_urls[2]["img_url"] }}" alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text">{{ mars_info.hemispheres_image_urls[2]["title"] }}</p>
+            </div>
+
+        </div>
+
+        <div class="card" style="width: 18rem; margin:30px;">
+            <img class="card-img-top" src="{{ mars_info.hemispheres_image_urls[3]["img_url"] }}" alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text">{{ mars_info.hemispheres_image_urls[3]["title"] }}</p>
+            </div>
+
+
+
+        </div>
+      </div>
+    </div>
+ 
+    </div>
+    </div>
+
+        <!-- End of container -->
+    </div>
+    
+
+    <!-- Footer Section -->
+    <!-- <footer>
+        <div class="footer">Copyright &copy; Gabriela Cantu 2018</div>
+    </footer> -->
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
