@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" type="image" href="#" />
+    <link rel="icon" type="image" href="https://pngimg.com/uploads/mars_planet/mars_planet_PNG13.png">
     <title>Mission to Mars</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="main.js"></script>
@@ -15,23 +15,19 @@
         crossorigin="anonymous">
 
     <!--CSS Link-->
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="#">
 
 </head>
 
-<body>
+<body class="text-white" style="background-color:black;">
         <div class="container">
 
-
         <!-- Jumbotron -->
+        
 
-        <div class="jumbotron">
+        <div class="jumbotron text-center" style="background-image: url(https://cdn.theatlantic.com/static/mt/assets/science/0831Pic.jpg); background-size: 100%;">
             <h1 class="display-4">Mission to Mars</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention
-                to featured content or information.</p>
-            <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a>
+            <a class="btn btn-lg text-white" style="background-color:#c1440e;" href="/scrape" role="button">Scrape New Data</a>
         </div>
 
         <!-- News Section -->
@@ -44,7 +40,7 @@
         <!-- Featured Image Section -->
 <div class="container">
         <div class="row">
-                <div class="col-8">
+                <div class="col-lg-8 col-md-8 col-sm-12">
 
 
             <h3>Featured Mars Image</h3>
@@ -56,9 +52,9 @@
         <!-- Right Container -->
   
         <!-- Weather Card -->
-        <div class="col-4">
+        <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card" style="width: 18rem;">
-            <div class="card-body">
+            <div class="card-body text-white bg-dark">
                 <h6 class="card-title">Current Weather on Mars</h6>
                 <p class="card-text">{{ mars_info.weather_tweet }}</p>
             </div>
@@ -88,7 +84,7 @@
         <div class="card-deck">
         <div class="container">
         <div class="row">
-        <div class="card" style="width: 18rem; margin:30px;">
+        <div class="card text-white bg-dark" style="width: 18rem; margin:30px;">
             <img class="card-img-top" src="{{ mars_info.hemispheres_image_urls[0]["img_url"] }}" alt="Card image cap">
             <div class="card-body">
                 <p class="card-text">{{ mars_info.hemispheres_image_urls[0]["title"] }}</p>
@@ -99,7 +95,7 @@
 
      
 
-        <div class="card" style="width: 18rem; margin:30px;">
+        <div class="card text-white bg-dark" style="width: 18rem; margin:30px;">
             <img class="card-img-top" src="{{ mars_info.hemispheres_image_urls[1]["img_url"] }}" alt="Card image cap">
             <div class="card-body">
                 <p class="card-text">{{ mars_info.hemispheres_image_urls[1]["title"] }}</p>
@@ -109,7 +105,7 @@
     </div>
 
         <div class="row">
-        <div class="card" style="width: 18rem; margin:30px;">
+        <div class="card text-white bg-dark" style="width: 18rem; margin:30px;">
             <img class="card-img-top" src="{{ mars_info.hemispheres_image_urls[2]["img_url"] }}" alt="Card image cap">
             <div class="card-body">
                 <p class="card-text">{{ mars_info.hemispheres_image_urls[2]["title"] }}</p>
@@ -117,7 +113,7 @@
 
         </div>
 
-        <div class="card" style="width: 18rem; margin:30px;">
+        <div class="card text-white bg-dark" style="width: 18rem; margin:30px;">
             <img class="card-img-top" src="{{ mars_info.hemispheres_image_urls[3]["img_url"] }}" alt="Card image cap">
             <div class="card-body">
                 <p class="card-text">{{ mars_info.hemispheres_image_urls[3]["title"] }}</p>

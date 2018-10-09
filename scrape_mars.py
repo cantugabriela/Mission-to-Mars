@@ -10,16 +10,15 @@ def init_browser():
     executable_path = {'executable_path': 'C:\Program Files\chromedriver_win32\chromedriver.exe'}
     return Browser("chrome", **executable_path, headless=False)
 
+# Create Mission to Mars global dictionary that can be imported into Mongo
+mars_info = {}
 
-def scrape(): 
+# NASA MARS NEWS
+def scrape_mars_news(): 
 
     # Initialize browser 
     browser = init_browser()
 
-    # Create Mission to Mars dictionary that can be imported into Mongo
-    mars_info = {}
-
-# NASA MARS NEWS
     # Visit Nasa news url through splinter module
     url = 'https://mars.nasa.gov/news/'
     browser.visit(url)
@@ -39,7 +38,14 @@ def scrape():
     mars_info['news_title'] = news_title
     mars_info['news_paragraph'] = news_p
 
+    
+    return mars_info
+
 # FEATURED IMAGE
+def scrape_mars_image(): 
+
+    # Initialize browser 
+    browser = init_browser()
 
     # Visit Mars Space Images through splinter module
     image_url_featured = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
@@ -66,7 +72,14 @@ def scrape():
     # Dictionary entry from FEATURED IMAGE
     mars_info['featured_image_url'] = featured_image_url 
 
-## Mars Weather 
+    
+    return mars_info
+
+# Mars Weather 
+def scrape_mars_weather(): 
+
+    # Initialize browser 
+    browser = init_browser()
 
     # Visit Mars Weather Twitter through splinter module
     weather_url = 'https://twitter.com/marswxreport?lang=en'
@@ -91,11 +104,14 @@ def scrape():
         else: 
             pass
 
-    # Dictionary entry from FEATURED IMAGE
+    # Dictionary entry from WEATHER TWEET
     mars_info['weather_tweet'] = weather_tweet
 
+    
+    return mars_info
 
-    ## Mars Facts
+# Mars Facts
+def scrape_mars_facts(): 
 
     # Visit Mars facts url 
     facts_url = 'http://space-facts.com/mars/'
@@ -115,14 +131,19 @@ def scrape():
     # Save html code to folder Assets
     data = mars_df.to_html()
 
-
-
-    #data = mars_df.to_dict(orient='records')
-
-    # Dictionary entry from FEATURED IMAGE
+    # Dictionary entry from MARS FACTS
     mars_info['mars_facts'] = data
 
-    # MARS HEMISPHERES
+    
+    return mars_info
+
+
+# MARS HEMISPHERES
+
+def scrape_mars_hemispheres():
+
+    # Initialize browser 
+    browser = init_browser()
 
     # Visit hemispheres website through splinter module 
     hemispheres_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
