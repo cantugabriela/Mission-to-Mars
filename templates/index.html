@@ -19,123 +19,100 @@
 
 </head>
 
-<body class="text-white" style="background-color:black;">
-        <div class="container">
 
-        <!-- Jumbotron -->
+<body class="text-white" style="background-color:black;">
+    <div class="container">
+
+            <!-- Jumbotron -->
+            <div class="jumbotron text-center" style="background-image: url(https://cdn.theatlantic.com/static/mt/assets/science/0831Pic.jpg); background-size: 100%;">
+                <h1 class="display-4">Mission to Mars</h1>
+                <a class="btn btn-lg text-white" style="background-color:#c1440e;" href="/scrape" role="button">Scrape New Data</a>
+            </div>
+
+            <!-- News Section -->
+            <div class="container">
+                    <h3>Latest Mars News</h3>
+                    <h6>{{ mars_info.news_title }}</h6>
+                    <p>{{ mars_info.news_paragraph }}</p>
+            </div>
+
+            <div class="container">
+             <div class="row">
+            <!-- First Row Left: Image -->
+            <div class="col-lg-8 col-md-8 col-sm-12">
+
+                    <h3>Featured Mars Image</h3>
+                    <img src="{{ mars_info.featured_image_url }}" style="max-width:100%; max-height: auto;">
+        
         
 
-        <div class="jumbotron text-center" style="background-image: url(https://cdn.theatlantic.com/static/mt/assets/science/0831Pic.jpg); background-size: 100%;">
-            <h1 class="display-4">Mission to Mars</h1>
-            <a class="btn btn-lg text-white" style="background-color:#c1440e;" href="/scrape" role="button">Scrape New Data</a>
-        </div>
-
-        <!-- News Section -->
-
-        <div class="container">
-            <h3>Latest Mars News</h3>
-            <h6>{{ mars_info.news_title }}</h6>
-            <p>{{ mars_info.news_paragraph }}</p>
-        </div>
-        <!-- Featured Image Section -->
-<div class="container">
-        <div class="row">
-                <div class="col-lg-8 col-md-8 col-sm-12">
-
-
-            <h3>Featured Mars Image</h3>
-            <img src="{{ mars_info.featured_image_url }}" style="max-width:100%; max-height: auto;">
-
-
-        </div>
-
-        <!-- Right Container -->
-  
-        <!-- Weather Card -->
-        <div class="col-lg-4 col-md-4 col-sm-12">
-        <div class="card" style="width: 18rem;">
-            <div class="card-body text-white bg-dark">
-                <h6 class="card-title">Current Weather on Mars</h6>
-                <p class="card-text">{{ mars_info.weather_tweet }}</p>
             </div>
-        </div>
+            <!-- First row Right Weather Card -->
+            <div class="col-lg-4 col-md-4 col-sm-12">
 
-        <!-- Mars Facts Table  -->
+                    <div class="card" style="width: 18rem;">
+                            <div class="card-body text-white bg-dark">
+                                <h6 class="card-title">Current Weather on Mars</h6>
+                                <p class="card-text">{{ mars_info.weather_tweet }}</p>
+                            </div>
 
-        <h6>Mars Facts</h6>
-        <div style="max-width: 450px; max-height: 150px; font-size: 15px;">
-        {{ mars_info.mars_facts |safe}}
-         </div>
-</div>
-
-
-
-         </div>
-        <br>
-        <br>
+                    </div>
 
 
+                <!-- Table -->
+
+                <br>
+                <h6>Mars Facts</h6>
+                <div style="max-width: 450px; max-height: 150px; font-size: 15px;">
+                {{ mars_info.mars_facts|safe}}
+                 </div>
+
+
+            </div> <!-- col4 -->
+
+            </div><!-- Row -->
+
+
+            </div><!-- Container -->
+
+            <div class="card-deck" style="margin-top:100px;">
+                    <h3 style="padding-top:50px;">Mars Hemispheres</h3>
+                    <hr>
+                <div class="row">
+                    <div class="card text-white bg-dark" style="margin: 30px;">
+                      <img class="card-img-top" src="{{ mars_info.hemispheres_image_urls[0]["img_url"] }}" alt="Card image cap">
+                      <div class="card-body">
+                        <p class="card-text">{{ mars_info.hemispheres_image_urls[0]["title"] }}</p>
+                      </div>
+                    </div>
+                    <div class="card text-white bg-dark" style="margin: 30px;">
+                      <img class="card-img-top" src="{{ mars_info.hemispheres_image_urls[1]["img_url"] }}" alt="Card image cap">
+                      <div class="card-body">
+                        <p class="card-text">{{ mars_info.hemispheres_image_urls[1]["title"] }}</p>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card text-white bg-dark" style="margin: 30px;">
+                      <img class="card-img-top" src="{{ mars_info.hemispheres_image_urls[2]["img_url"] }}" alt="Card image cap">
+                      <div class="card-body">
+                        <p class="card-text">{{ mars_info.hemispheres_image_urls[2]["title"] }}</p>
+                      </div>
+                    </div>
+                    <div class="card text-white bg-dark" style="margin: 30px;">
+                            <img class="card-img-top" src="{{ mars_info.hemispheres_image_urls[3]["img_url"] }}" alt="Card image cap">
+                            <div class="card-body">
+                              <p class="card-text">{{ mars_info.hemispheres_image_urls[3]["title"] }}</p>
+                            </div>
+                          </div>
+                        </div>
+                  </div>
 
 
 
-        <!-- Mars Hemisphers Section -->
-        <h3>Mars Hemispheres</h3>
-        <hr>
-        <div class="card-deck">
-        <div class="container">
-        <div class="row">
-        <div class="card text-white bg-dark" style="width: 18rem; margin:30px;">
-            <img class="card-img-top" src="{{ mars_info.hemispheres_image_urls[0]["img_url"] }}" alt="Card image cap">
-            <div class="card-body">
-                <p class="card-text">{{ mars_info.hemispheres_image_urls[0]["title"] }}</p>
-            </div>
 
-        </div>
+    </div><!-- Close main container -->
 
-
-     
-
-        <div class="card text-white bg-dark" style="width: 18rem; margin:30px;">
-            <img class="card-img-top" src="{{ mars_info.hemispheres_image_urls[1]["img_url"] }}" alt="Card image cap">
-            <div class="card-body">
-                <p class="card-text">{{ mars_info.hemispheres_image_urls[1]["title"] }}</p>
-            </div>
-
-        </div>
-    </div>
-
-        <div class="row">
-        <div class="card text-white bg-dark" style="width: 18rem; margin:30px;">
-            <img class="card-img-top" src="{{ mars_info.hemispheres_image_urls[2]["img_url"] }}" alt="Card image cap">
-            <div class="card-body">
-                <p class="card-text">{{ mars_info.hemispheres_image_urls[2]["title"] }}</p>
-            </div>
-
-        </div>
-
-        <div class="card text-white bg-dark" style="width: 18rem; margin:30px;">
-            <img class="card-img-top" src="{{ mars_info.hemispheres_image_urls[3]["img_url"] }}" alt="Card image cap">
-            <div class="card-body">
-                <p class="card-text">{{ mars_info.hemispheres_image_urls[3]["title"] }}</p>
-            </div>
-
-
-
-        </div>
-      </div>
-    </div>
- 
-    </div>
-    </div>
-
-        <!-- End of container -->
-    </div>
-    
-
-    <!-- Footer Section -->
-    <!-- <footer>
-        <div class="footer">Copyright &copy; Gabriela Cantu 2018</div>
-    </footer> -->
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -147,5 +124,4 @@
 
 
 </body>
-
 </html>
