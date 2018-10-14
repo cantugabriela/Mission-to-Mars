@@ -1,209 +1,119 @@
-# Import Dependecies 
-from bs4 import BeautifulSoup 
-from splinter import Browser
-import pandas as pd 
-import requests 
+<!DOCTYPE html>
+<html>
 
-# Initialize browser
-def init_browser(): 
-    # Replace the path with your actual path to the chromedriver
-
-    #Mac Users
-    #executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    #return Browser('chrome', **executable_path, headless=False)
-
-    #Windows Users
-    executable_path = {'executable_path': 'chromedriver.exe'}
-    return Browser('chrome', **executable_path, headless=False)
-
-# Create Mission to Mars global dictionary that can be imported into Mongo
-mars_info = {}
-
-# NASA MARS NEWS
-def scrape_mars_news(): 
-
-    # Initialize browser 
-    browser = init_browser()
-
-    #browser.is_element_present_by_css("div.content_title", wait_time=1)
-
-    # Visit Nasa news url through splinter module
-    url = 'https://mars.nasa.gov/news/'
-    browser.visit(url)
-
-    # HTML Object
-    html = browser.html
-
-    # Parse HTML with Beautiful Soup
-    soup = BeautifulSoup(html, 'html.parser')
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image" href="https://pngimg.com/uploads/mars_planet/mars_planet_PNG13.png">
+    <title>Mission to Mars</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    # Retrieve the latest element that contains news title and news_paragraph
-    news_title = soup.find('div', class_='content_title').find('a').text
-    news_p = soup.find('div', class_='article_teaser_body').text
 
-    # Dictionary entry from MARS NEWS
-    mars_info['news_title'] = news_title
-    mars_info['news_paragraph'] = news_p
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
 
-    return mars_info
+</head>
 
-# FEATURED IMAGE
-def scrape_mars_image(): 
+<body class="text-white" style="background-color:black;">
+    <div class="container">
 
-    # Initialize browser 
-    browser = init_browser()
+        <!-- Jumbotron -->
+        <div class="jumbotron text-center" style="background-image: url(https://cdn.theatlantic.com/static/mt/assets/science/0831Pic.jpg); background-size: 100%;">
+            <h1 class="display-4">Mission to Mars</h1>
+            <a class="btn btn-lg text-white" style="background-color:#c1440e;" href="/scrape" role="button">Scrape New
+                Data</a>
+        </div>
 
-    #browser.is_element_present_by_css("img.jpg", wait_time=1)
+        <!-- News Section -->
+        <div class="container">
+            <h3>Latest Mars News</h3>
+            <h6>{{ mars_info.news_title }}</h6>
+            <p>{{ mars_info.news_paragraph }}</p>
+        </div>
 
-    # Visit Mars Space Images through splinter module
-    image_url_featured = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
-    browser.visit(image_url_featured)# Visit Mars Space Images through splinter module
+        <div class="container">
+            <div class="row">
+                <!-- Left Image-->
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <h3>Featured Mars Image</h3>
+                    <img src="{{ mars_info.featured_image_url }}" style="max-width:100%; max-height: auto;" alt="Mars Featured Image">
+                </div>
+                <!-- Weather Card -->
+                <div class="col-lg-4 col-md-4 col-sm-12">
 
-    # HTML Object 
-    html_image = browser.html
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body text-white bg-dark">
+                            <h6 class="card-title">Current Weather on Mars</h6>
+                            <p class="card-text">{{ mars_info.weather_tweet }}</p>
+                        </div>
 
-    # Parse HTML with Beautiful Soup
-    soup = BeautifulSoup(html_image, 'html.parser')
+                    </div>
 
-    # Retrieve background-image url from style tag 
-    featured_image_url  = soup.find('article')['style'].replace('background-image: url(','').replace(');', '')[1:-1]
+                    <!-- Table -->
+                    <br>
+                    <h6>Mars Facts</h6>
+                    <div style="max-width: 450px; max-height: 150px; font-size: 15px;">
+                        {{ mars_info.mars_facts|safe}}
+                    </div>
+                </div> <!-- col4 -->
+            </div><!-- Row -->
+        </div><!-- Container -->
 
-    # Website Url 
-    main_url = 'https://www.jpl.nasa.gov'
-
-    # Concatenate website url with scrapped route
-    featured_image_url = main_url + featured_image_url
-
-    # Display full link to featured image
-    featured_image_url 
-
-    # Dictionary entry from FEATURED IMAGE
-    mars_info['featured_image_url'] = featured_image_url 
-    
-    return mars_info
-
-# Mars Weather 
-def scrape_mars_weather(): 
-
-    # Initialize browser 
-    browser = init_browser()
-
-    #browser.is_element_present_by_css("div", wait_time=1)
-
-    # Visit Mars Weather Twitter through splinter module
-    weather_url = 'https://twitter.com/marswxreport?lang=en'
-    browser.visit(weather_url)
-
-    # HTML Object 
-    html_weather = browser.html
-
-    # Parse HTML with Beautiful Soup
-    soup = BeautifulSoup(html_weather, 'html.parser')
-
-    # Find all elements that contain tweets
-    latest_tweets = soup.find_all('div', class_='js-tweet-text-container')
-
-    # Retrieve all elements that contain news title in the specified range
-    # Look for entries that display weather related words to exclude non weather related tweets 
-    for tweet in latest_tweets: 
-        weather_tweet = tweet.find('p').text
-        if 'Sol' and 'pressure' in weather_tweet:
-            print(weather_tweet)
-            break
-        else: 
-            pass
-
-    # Dictionary entry from WEATHER TWEET
-    mars_info['weather_tweet'] = weather_tweet
-    
-    return mars_info
-
-# Mars Facts
-def scrape_mars_facts(): 
-
-    # Visit Mars facts url 
-    facts_url = 'http://space-facts.com/mars/'
-
-    # Use Panda's `read_html` to parse the url
-    mars_facts = pd.read_html(facts_url)
-
-    # Find the mars facts DataFrame in the list of DataFrames as assign it to `mars_df`
-    mars_df = mars_facts[0]
-
-    # Assign the columns `['Description', 'Value']`
-    mars_df.columns = ['Description','Value']
-
-    # Set the index to the `Description` column without row indexing
-    mars_df.set_index('Description', inplace=True)
-
-    # Save html code to folder Assets
-    data = mars_df.to_html()
-
-    # Dictionary entry from MARS FACTS
-    mars_info['mars_facts'] = data
-
-    return mars_info
+        <!-- Cards -->
 
 
-# MARS HEMISPHERES
 
-def scrape_mars_hemispheres():
-
-    # Initialize browser 
-    browser = init_browser()
-    #browser.is_element_present_by_css("div", wait_time=1)
-
-    # Visit hemispheres website through splinter module 
-    hemispheres_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
-    browser.visit(hemispheres_url)
-
-    # HTML Object
-    html_hemispheres = browser.html
-
-    # Parse HTML with Beautiful Soup
-    soup = BeautifulSoup(html_hemispheres, 'html.parser')
-
-    # Retreive all items that contain mars hemispheres information
-    items = soup.find_all('div', class_='item')
-
-    # Create empty list for hemisphere urls 
-    hemispheres_image_urls = []
-
-    # Store the main_ul 
-    hemispheres_main_url = 'https://astrogeology.usgs.gov' 
-
-    # Loop through the items previously stored
-    for i in items: 
-        # Store title
-        title = i.find('h3').text
-        
-        # Store link that leads to full image website
-        partial_img_url = i.find('a', class_='itemLink product-item')['href']
-        
-        # Visit the link that contains the full image website 
-        browser.visit(hemispheres_main_url + partial_img_url)
-        
-        # HTML Object of individual hemisphere information website 
-        partial_img_html = browser.html
-        
-        # Parse HTML with Beautiful Soup for every individual hemisphere information website 
-        soup = BeautifulSoup( partial_img_html, 'html.parser')
-        
-        # Retrieve full image source 
-        img_url = hemispheres_main_url + soup.find('img', class_='wide-image')['src']
-        
-        # Append the retreived information into a list of dictionaries 
-        hemispheres_image_urls.append({"title" : title, "img_url" : img_url})
-
-        mars_info['hemispheres_image_urls'] = hemispheres_image_urls
-
-    
-    # Return mars_data dictionary 
-
-    return mars_info
+        <!-- Cards -->
+        <div class="card-deck" style="margin-top:100px;">
+            <h3 style="padding-top:50px; text-align: center;">Mars Hemispheres</h3>
+            <hr>
+            <div class="row">
+                <div class="card text-white bg-dark" style="margin: 30px;">
+                    <img class="card-img-top" src="{{ mars_info.hmu[0]['img_url'] }}">
+                    <div class="card-body">
+                        <p class="card-text">{{ mars_info.hmu[0]['title'] }}</p>
+                    </div>
+                </div>
+                <div class="card text-white bg-dark" style="margin: 30px;">
+                    <img class="card-img-top" src="{{ mars_info.hmu[1]['img_url'] }}">
+                    <div class="card-body">
+                        <p class="card-text">{{ mars_info.hmu[1]['title'] }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card text-white bg-dark" style="margin: 30px;">
+                    <img class="card-img-top" src="{{ mars_info.hmu[2]['img_url'] }}">
+                    <div class="card-body">
+                        <p class="card-text">{{ mars_info.hmu[2]["title"] }}</p>
+                    </div>
+                </div>
+                <div class="card text-white bg-dark" style="margin: 30px;">
+                    <img class="card-img-top" src="{{ mars_info.hmu[3]['img_url'] }}">
+                    <div class="card-body">
+                        <p class="card-text">{{ mars_info.hmu[3]["title"] }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- Close main container -->
 
 
-  
+    </div><!-- Close main container -->
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
 
 
