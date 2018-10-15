@@ -2,7 +2,7 @@
 
 http://marsdata.ml/
 
-Flask web application that scrapes various website for data related to the Mission to Mars and displays the information in a single HTML page. 
+Flask web application that scrapes various websiteS for data related to the Mission to Mars and displays the information in a single HTML page. 
 
 ### Scrapping 
 
