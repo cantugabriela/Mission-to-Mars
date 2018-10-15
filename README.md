@@ -45,4 +45,4 @@ Alternatively, it can run locally. First, install MongoDB. Once MongoDB is insta
   * beautifulsoup4==4.6.3
 
 
-![Screenshot 1](https://github.com/cantugabriela/Mission-to-Mars/blob/master/websitescreenshot.png?raw=true)
+![Screenshot 1](https://github.com/cantugabriela/Mission-to-Mars/blob/master/screenshot.png?raw=true)
