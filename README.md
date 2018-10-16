@@ -32,7 +32,7 @@ The MongoDB is currently hosted on the Database-as-a-Service https://mlab.com/. 
 
 ![DatabaseDB](https://docs.mlab.com/assets/screenshot-connectinfo.png)
 
-Alternatively, it can run locally. First, install MongoDB. Once MongoDB is installed run the command mondgod on bash. Don't forget to comment and uncomment the URI to use the local database only. Also comment out `import config`
+Alternatively, it can run locally. First, install MongoDB. Once MongoDB is installed run the command mondgod on bash. Don't forget to comment and uncomment the URI to use the local database only. Also comment out `import config`.
 
 ### Requirements 
 
