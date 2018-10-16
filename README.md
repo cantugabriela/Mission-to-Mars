@@ -2,7 +2,7 @@
 
 http://marsdata.ml/
 
-Flask web application that scrapes various websiteS for data related to the Mars Mission and displays the information in a single HTML page. 
+Flask web application that scrapes various websites for data related to the Mars Mission and displays the information in a single HTML page. 
 
 ### Scrapping 
 
@@ -28,11 +28,11 @@ Flask web application that scrapes various websiteS for data related to the Mars
 
 ### MongoDB and Flask Application
 
-The MongoDB is currently hosted on the Database-as-a-Service https://mlab.com/. It requires a config.py file (hidden) using a driver via the standard MongoDB URI. The config.py contains a variable "authentication" set to the MongoDB URI.
+The MongoDB is currently hosted on the Database-as-a-Service https://mlab.com/. It requires a config.py file (hidden) using a driver via the standard MongoDB URI. The config.py contains a variable "authentication=" set to the MongoDB URI.
 
 ![DatabaseDB](https://docs.mlab.com/assets/screenshot-connectinfo.png)
 
-Alternatively, it can run locally. First, install MongoDB. Once MongoDB is installed run the command mondgod on bash. Don't forget to comment and uncomment the URI to use the local database only. 
+Alternatively, it can run locally. First, install MongoDB. Once MongoDB is installed run the command mondgod on bash. Don't forget to comment and uncomment the URI to use the local database only. Also comment out `import config`
 
 ### Requirements 
 
