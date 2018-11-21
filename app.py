@@ -3,15 +3,17 @@ from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
 import scrape_mars
 
+from boto.s3.connection import S3Connection
+s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
 
 # Hidden authetication file
-import config 
+#import config 
 
 # Create an instance of Flask app
 app = Flask(__name__)
 
 #Use flask_pymongo to set up connection through mLab
-app.config["MONGO_URI"] = config.authentication 
+app.config["MONGO_URI"] = authentication 
 mongo = PyMongo(app)
 
 
