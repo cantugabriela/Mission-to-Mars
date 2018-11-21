@@ -13,8 +13,10 @@ def init_browser():
     # return Browser('chrome', **executable_path, headless=False)
 
     #Windows Users
-    executable_path = {'executable_path': 'chromedriver.exe'}
-    return Browser('chrome', **executable_path, headless=False)
+    # executable_path = {'executable_path': 'chromedriver.exe'}
+    # return Browser('chrome', **executable_path, headless=False)
+
+    return Browser("chrome",executable_path=r'chromedriver.exe', headless=False)
 
 # Create Mission to Mars global dictionary that can be imported into Mongo
 mars_info = {}
