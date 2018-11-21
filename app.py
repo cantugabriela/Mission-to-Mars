@@ -4,19 +4,19 @@ from flask_pymongo import PyMongo
 import scrape_mars
 
 # Hidden authetication file
-import config 
+# import config 
 
 # Create an instance of Flask app
 app = Flask(__name__)
 
 # Use flask_pymongo to set up connection through mLab
-app.config["MONGO_URI"] = config.authentication 
-mongo = PyMongo(app)
+# app.config["MONGO_URI"] = config.authentication 
+# mongo = PyMongo(app)
 
 
 # Use flask_pymongo to set up mongo connection locally 
-#app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_app"
-#mongo = PyMongo(app)
+app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_app"
+mongo = PyMongo(app)
 
 # Create route that renders index.html template and finds documents from mongo
 @app.route("/")
