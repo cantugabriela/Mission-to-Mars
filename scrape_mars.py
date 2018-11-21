@@ -91,9 +91,9 @@ def scrape_mars_image():
         mars_info['featured_image_url'] = featured_image_url 
         
         return mars_info
-    # finally:
+    finally:
 
-    #     browser.quit()
+        browser.quit()
 
         
 
@@ -134,9 +134,9 @@ def scrape_mars_weather():
         mars_info['weather_tweet'] = weather_tweet
         
         return mars_info
-    # finally:
+    finally:
 
-    #     browser.quit()
+        browser.quit()
 
 
 # Mars Facts
@@ -224,9 +224,9 @@ def scrape_mars_hemispheres():
         # Return mars_data dictionary 
 
         return mars_info
-    # finally:
+    finally:
 
-    #     browser.quit()
+        browser.quit()
 
 
   
