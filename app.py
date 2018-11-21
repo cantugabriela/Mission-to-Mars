@@ -12,7 +12,7 @@ import os
 app = Flask(__name__)
 
 #Use flask_pymongo to set up connection through mLab
-app.config["MONGO_URI"] = os.environ.get(authentication)
+app.config["MONGO_URI"] = os.environ.get('authentication')
 mongo = PyMongo(app)
 
 
